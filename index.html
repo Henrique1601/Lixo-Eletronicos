@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Chicão Eletrônicos • Coleta e Descarte Consciente de Lixo Eletrônico na Baixada Santista</title>
+  <meta name="description" content="Descarte consciente de lixo eletrônico em Santos e Baixada Santista (DDD 13). Coletamos computadores, celulares, TVs, cabos e periféricos. Não jogue no lixo comum!">
+  <meta name="author" content="Chicão Eletrônicos">
+  
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Chicão Eletrônicos • Coleta de Lixo Eletrônico (DDD 13)">
+  <meta property="og:description" content="Descarte correto, futuro melhor! Coleta de computadores, celulares, cabos e eletrônicos em geral na Baixada Santista.">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Favicon SVG ecológico com símbolo de reciclagem tecnológico -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310b981'/><path d='M16 6l4 6h-3v5h-2v-5h-3l4-6zm-7 13l4-6 1.7 1-3.4 5H18v2H9v-2zm14 0h-9v-2h6.7l-3.4-5 1.7-1 4 6v2z' fill='white'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Instrument Serif, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            eco: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+            },
+            surface: {
+              dark: '#070A08',
+              darkCard: '#0E1410',
+              darkBorder: 'rgba(16, 185, 129, 0.12)',
+              light: '#F6F9F6',
+              lightCard: '#FFFFFF',
+              lightBorder: '#E2E8F0',
+            }
+          },
+          boxShadow: {
+            'eco-glow': '0 0 50px -10px rgba(16, 185, 129, 0.25)',
+            'eco-btn': '0 10px 25px -5px rgba(16, 185, 129, 0.35)',
+            'card-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+            'card-light': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Estilos globais e refinamentos de design */
+    :root {
+      --bg-color: #070A08;
+      --card-bg: #0E1410;
+      --border-color: rgba(16, 185, 129, 0.12);
+      --text-primary: #F3F4F6;
+      --text-secondary: #9CA3AF;
+    }
+
+    html.light {
+      --bg-color: #F6F9F6;
+      --card-bg: #FFFFFF;
+      --border-color: #E2E8F0;
+      --text-primary: #0F172A;
+      --text-secondary: #64748B;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Tipografia Fluida via clamp() */
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw + 1rem, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.2vw + 0.5rem, 3rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    /* Ambient Spotlight Background com nuance verde esmeralda */
+    .ambient-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1300px;
+      height: 650px;
+      background: radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.14) 0%, rgba(16, 185, 129, 0.03) 50%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Bento Card Spotlight Hover Effect */
+    .bento-card {
+      position: relative;
+      border-radius: 1.5rem;
+      transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(16, 185, 129, 0.08), transparent 45%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+
+    .bento-card:hover {
+      border-color: rgba(16, 185, 129, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Micro-interação em botões seguindo emil-design-eng */
+    .btn-press {
+      transition: transform 140ms ease-out, background-color 200ms ease, box-shadow 200ms ease;
+    }
+
+    .btn-press:active {
+      transform: scale(0.97);
+    }
+
+    /* Animação suave de entrada de scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom Scrollbar minimalista */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(16, 185, 129, 0.2);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(16, 185, 129, 0.4);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .btn-press:active {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-eco-500 selection:text-white">
+
+  <!-- Background Ambient Glow -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- ============================================================== -->
+  <!-- 1. NAVBAR FLUTUANTE EM CÁPSULA (PILL NAV)                      -->
+  <!-- ============================================================== -->
+  <header class="fixed top-4 sm:top-6 left-0 right-0 z-50 px-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-2.5 sm:px-6 sm:py-3 rounded-full bg-slate-950/80 dark:bg-[#080C0A]/85 backdrop-blur-xl border border-white/10 dark:border-eco-500/20 shadow-2xl shadow-black/40 text-slate-100 transition-all duration-300">
+      
+      <!-- Brand Logo / Monogram -->
+      <a href="#inicio" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500 rounded-full" aria-label="Página Inicial - Chicão Eletrônicos">
+        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-eco-600 to-emerald-400 flex items-center justify-center text-slate-950 font-bold text-sm tracking-tight shadow-md shadow-eco-500/30 group-hover:scale-105 transition-transform duration-200">
+          <svg class="w-5 h-5 text-slate-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/>
+            <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/>
+            <path d="m14 16-3 3 3 3"/>
+            <path d="M8.294 4.5h7.412a1.83 1.83 0 0 1 1.57.881 1.785 1.785 0 0 1 .004 1.784L13.33 13"/>
+            <path d="m10 8 3-3-3-3"/>
+          </svg>
+        </div>
+        <div class="flex flex-col leading-none">
+          <span class="font-bold text-sm text-white tracking-tight">CHICÃO ELETRÔNICOS</span>
+          <span class="text-[11px] text-eco-400 font-mono tracking-wide hidden sm:block">Descarte Consciente • DDD 13</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+        <a href="#o-que-coletamos" class="hover:text-eco-400 transition-colors duration-150 py-1">O Que Coletamos</a>
+        <a href="#calculadora" class="hover:text-eco-400 transition-colors duration-150 py-1">Seletor de Descarte</a>
+        <a href="#por-que-descartar" class="hover:text-eco-400 transition-colors duration-150 py-1">Impacto Ambiental</a>
+        <a href="#como-funciona" class="hover:text-eco-400 transition-colors duration-150 py-1">Como Funciona</a>
+        <a href="#faq" class="hover:text-eco-400 transition-colors duration-150 py-1">Dúvidas</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Dark / Light Mode Toggle Button -->
+        <button id="themeToggleBtn" type="button" class="w-9 h-9 rounded-full flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors btn-press focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500" aria-label="Alternar tema claro/escuro">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+        </button>
+
+        <!-- CTA Principal WhatsApp -->
+        <a href="https://wa.me/5513991315054?text=Ol%C3%A1%20Chic%C3%A3o%20Eletr%C3%B4nicos!%20Vi%20sua%20landing%20page%20e%20gostaria%20de%20agendar%20o%20descarte%20de%20alguns%20eletr%C3%B4nicos." target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-eco-500 hover:bg-eco-400 text-slate-950 font-bold text-xs btn-press shadow-md shadow-eco-500/25 transition-all">
+          <span>Agendar Coleta</span>
+          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" type="button" class="md:hidden w-9 h-9 rounded-full flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none" aria-label="Abrir menu mobile" aria-expanded="false">
+          <i data-lucide="menu" id="menuIcon" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer / Menu Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden max-w-5xl mx-auto mt-2 p-5 rounded-3xl bg-[#090E0B]/95 backdrop-blur-2xl border border-eco-500/20 shadow-2xl text-slate-200 flex flex-col gap-4">
+      <nav class="flex flex-col gap-3 text-sm font-medium">
+        <a href="#o-que-coletamos" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/5 transition-colors">O Que Coletamos</a>
+        <a href="#calculadora" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/5 transition-colors">Seletor de Descarte</a>
+        <a href="#por-que-descartar" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/5 transition-colors">Impacto Ambiental</a>
+        <a href="#como-funciona" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/5 transition-colors">Como Funciona</a>
+        <a href="#faq" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-white/5 transition-colors">Perguntas Frequentes</a>
+      </nav>
+      <div class="pt-3 border-t border-white/10 flex flex-col gap-2">
+        <a href="https://wa.me/5513991315054?text=Ol%C3%A1%20Chic%C3%A3o%20Eletr%C3%B4nicos!%20Gostaria%20de%20agendar%20uma%20coleta." target="_blank" rel="noopener noreferrer" class="mobile-nav-link w-full py-3 rounded-xl bg-eco-500 text-slate-950 font-bold text-center text-sm btn-press flex items-center justify-center gap-2">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Falar no WhatsApp (13) 99131-5054</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- 2. HERO SECTION COM PROPOSTA DE VALOR & CONVERSÃO DIRETA      -->
+  <!-- ============================================================== -->
+  <main>
+    <section id="inicio" class="relative pt-36 sm:pt-44 md:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col items-center text-center max-w-4xl mx-auto">
+        
+        <!-- Live Status Regional Badge -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-eco-500/10 border border-eco-500/20 text-xs font-mono text-eco-400 mb-8 backdrop-blur-sm shadow-sm reveal-on-scroll">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-eco-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-eco-500"></span>
+          </span>
+          <span class="font-medium text-eco-300">Coleta Ativa na Baixada Santista</span>
+          <span class="text-eco-600">•</span>
+          <span class="text-slate-300 hidden sm:inline">DDD (13) 99131-5054</span>
+        </div>
+
+        <!-- Headline Principal com o mote do cartaz -->
+        <h1 class="hero-title font-extrabold text-slate-900 dark:text-white tracking-tight mb-7 reveal-on-scroll">
+          Descarte correto. <br class="hidden sm:inline" />
+          <span class="font-serif italic font-normal text-eco-500 dark:text-eco-400">Futuro melhor</span> para o planeta.
+        </h1>
+
+        <!-- Subheadline reforçando a mensagem central da imagem -->
+        <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed mb-10 reveal-on-scroll">
+          O lixo eletrônico descartado incorretamente contamina o solo, os canais de água e o ar. A <strong>Chicão Eletrônicos</strong> garante a destinação ecológica e responsável de computadores, celulares, cabos, baterias e periféricos em toda a Baixada Santista.
+        </p>
+
+        <!-- CTAs de Ação Imediata -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto mb-14 reveal-on-scroll">
+          
+          <!-- Botão WhatsApp Principal com número do cartaz -->
+          <a href="https://wa.me/5513991315054?text=Ol%C3%A1%20Chic%C3%A3o%20Eletr%C3%B4nicos!%20Gostaria%20de%20agendar%20uma%20coleta%20de%20lixo%20eletr%C3%B4nico." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-eco-500 hover:bg-eco-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2.5 shadow-eco-btn btn-press">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>Chamar Chicão no WhatsApp</span>
+          </a>
+
+          <!-- Botão Seletor Interativo -->
+          <a href="#calculadora" class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-slate-200 dark:bg-white/[0.06] hover:bg-slate-300 dark:hover:bg-white/[0.1] text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-white/10 font-medium text-sm flex items-center justify-center gap-2 btn-press">
+            <span>Montar Lista de Descarte</span>
+            <i data-lucide="sliders-horizontal" class="w-4 h-4 text-eco-400"></i>
+          </a>
+
+          <!-- Copiar Telefone com Feedback Toast -->
+          <button id="copyPhoneBtn" type="button" class="w-full sm:w-auto px-4 py-3.5 rounded-full bg-transparent hover:bg-slate-100 dark:hover:bg-white/[0.04] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-transparent font-mono text-xs flex items-center justify-center gap-2 transition-colors" title="Copiar telefone para ligar">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-eco-500"></i>
+            <span id="phoneLabel">(13) 99131-5054</span>
+          </button>
+        </div>
+
+        <!-- Barra de Métricas de Impacto & Social Proof -->
+        <div class="w-full max-w-4xl pt-10 border-t border-slate-200 dark:border-eco-500/10 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 reveal-on-scroll">
+          <div class="flex flex-col items-center">
+            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">+15 Toneladas</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">E-Waste Destinado</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-2xl sm:text-3xl font-extrabold text-eco-500 dark:text-eco-400 tracking-tight">100% Ecológico</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Zero Contaminação</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">6 Cidades</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Baixada Santista</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">R$ 0,00</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Coleta Domiciliar</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 3. BENTO GRID: O QUE RECOLHEMOS (DO POST)                      -->
+    <!-- ============================================================== -->
+    <section id="o-que-coletamos" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200 dark:border-white/5">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-xs font-mono font-semibold uppercase tracking-widest text-eco-500 block mb-3">Guia de Triagem</span>
+          <h2 class="section-title font-bold text-slate-900 dark:text-white tracking-tight">
+            O Que É Lixo Eletrônico? <br class="hidden sm:inline" />
+            Veja o que recolhemos.
+          </h2>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
+          São equipamentos quebrados, obsoletos ou sem uso que contêm placas, metais e circuitos. Não jogue na lixeira convencional!
+        </p>
+      </div>
+
+      <!-- Bento Grid com os 4 grupos do post original -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card 1: Celulares e Smartphones -->
+        <div class="bento-card p-7 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-eco-500/10 text-eco-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="smartphone" class="w-6 h-6"></i>
+            </div>
+            <span class="text-[11px] font-mono font-semibold text-eco-500 block mb-1">CATEGORIA 01</span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Celulares & Smartphones</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+              Aparelhos antigos, quebrados, com tela trincada, baterias estufadas ou simplesmente sem uso.
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 font-mono">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> iPhones e Androids</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Tablets e iPads</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Baterias e carregadores</li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-white/5 text-[11px] font-mono text-slate-400">
+            Descarte seguro de lítio
+          </div>
+        </div>
+
+        <!-- Card 2: Computadores e Notebooks -->
+        <div class="bento-card p-7 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="laptop" class="w-6 h-6"></i>
+            </div>
+            <span class="text-[11px] font-mono font-semibold text-eco-500 block mb-1">CATEGORIA 02</span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Computadores & Notebooks</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+              Equipamentos completos ou peças soltas de informática de casas, comércios e escritórios.
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 font-mono">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Gabinetes e Servidores</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Notebooks e MacBooks</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Placas, memórias e fontes</li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-white/5 text-[11px] font-mono text-slate-400">
+            Reciclagem de placas e metais
+          </div>
+        </div>
+
+        <!-- Card 3: TVs e Aparelhos Eletrônicos -->
+        <div class="bento-card p-7 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-teal-500/10 text-teal-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="tv" class="w-6 h-6"></i>
+            </div>
+            <span class="text-[11px] font-mono font-semibold text-eco-500 block mb-1">CATEGORIA 03</span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">TVs & Aparelhos</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+              Televisores, monitores, rádios, DVDs, impressoras, videogames e micro-ondas.
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 font-mono">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> TVs LED, LCD e tubo</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Impressoras e scanners</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Aparelhos de som e DVDs</li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-white/5 text-[11px] font-mono text-slate-400">
+            Isolamento de vidros e fósforo
+          </div>
+        </div>
+
+        <!-- Card 4: Cabos, Fios e Carregadores -->
+        <div class="bento-card p-7 flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-green-500/10 text-green-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-lucide="cable" class="w-6 h-6"></i>
+            </div>
+            <span class="text-[11px] font-mono font-semibold text-eco-500 block mb-1">CATEGORIA 04</span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Cabos & Carregadores</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+              Fios elétricos, cabos de rede, adaptadores, conectores, mouses, teclados e acessórios em geral.
+            </p>
+            <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 font-mono">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Fios de cobre e energia</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Fontes e carregadores</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-eco-500"></i> Teclados, mouses e fones</li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-white/5 text-[11px] font-mono text-slate-400">
+            Recuperação de cobre nobre
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 4. FERRAMENTA INTERATIVA: SELETOR DE DESCARTE ECOLÓGICO       -->
+    <!-- ============================================================== -->
+    <section id="calculadora" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-t border-slate-200 dark:border-white/5">
+      <div class="bento-card p-8 sm:p-12 border-eco-500/30 shadow-eco-glow">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-eco-500/10 text-eco-400 border border-eco-500/20 uppercase tracking-widest font-semibold inline-block mb-3">
+            Ferramenta Interativa
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-3">
+            Seletor de Descarte Consciente
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            Clique nos itens que você tem em casa ou na sua empresa. Criamos a mensagem formatada para você enviar direto no WhatsApp do Chicão!
+          </p>
+        </div>
+
+        <!-- Grid de Itens Selecionáveis -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8" id="itemsSelector">
+          
+          <!-- Item 1 -->
+          <div class="item-card p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-white/[0.02] flex items-center justify-between cursor-pointer hover:border-eco-500/40 transition-colors" data-id="celulares" data-name="Celulares / Tablets">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center">
+                <i data-lucide="smartphone" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Celulares / Tablets</span>
+                <span class="text-[11px] text-slate-500 font-mono">Antigos ou quebrados</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" class="btn-qty-minus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">-</button>
+              <span class="item-qty font-mono text-sm font-bold w-4 text-center">0</span>
+              <button type="button" class="btn-qty-plus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">+</button>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="item-card p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-white/[0.02] flex items-center justify-between cursor-pointer hover:border-eco-500/40 transition-colors" data-id="computadores" data-name="Computadores / Gabinetes">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center">
+                <i data-lucide="cpu" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Computadores / PCs</span>
+                <span class="text-[11px] text-slate-500 font-mono">Gabinetes e CPUs</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" class="btn-qty-minus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">-</button>
+              <span class="item-qty font-mono text-sm font-bold w-4 text-center">0</span>
+              <button type="button" class="btn-qty-plus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">+</button>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="item-card p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-white/[0.02] flex items-center justify-between cursor-pointer hover:border-eco-500/40 transition-colors" data-id="notebooks" data-name="Notebooks">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center">
+                <i data-lucide="laptop" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Notebooks</span>
+                <span class="text-[11px] text-slate-500 font-mono">Qualquer marca/estado</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" class="btn-qty-minus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">-</button>
+              <span class="item-qty font-mono text-sm font-bold w-4 text-center">0</span>
+              <button type="button" class="btn-qty-plus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">+</button>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="item-card p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-white/[0.02] flex items-center justify-between cursor-pointer hover:border-eco-500/40 transition-colors" data-id="cabos" data-name="Lote de Cabos e Fios">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center">
+                <i data-lucide="cable" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Cabos & Carregadores</span>
+                <span class="text-[11px] text-slate-500 font-mono">Fios, fontes e adaptadores</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" class="btn-qty-minus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">-</button>
+              <span class="item-qty font-mono text-sm font-bold w-4 text-center">0</span>
+              <button type="button" class="btn-qty-plus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">+</button>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="item-card p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-white/[0.02] flex items-center justify-between cursor-pointer hover:border-eco-500/40 transition-colors" data-id="tvs" data-name="TVs ou Monitores">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center">
+                <i data-lucide="tv" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">TVs / Monitores</span>
+                <span class="text-[11px] text-slate-500 font-mono">LED, LCD ou Tubo</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" class="btn-qty-minus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">-</button>
+              <span class="item-qty font-mono text-sm font-bold w-4 text-center">0</span>
+              <button type="button" class="btn-qty-plus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">+</button>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="item-card p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-white/[0.02] flex items-center justify-between cursor-pointer hover:border-eco-500/40 transition-colors" data-id="outros" data-name="Aparelhos Diversos">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center">
+                <i data-lucide="printer" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Impressoras / Eletros</span>
+                <span class="text-[11px] text-slate-500 font-mono">Rádios, DVDs, periféricos</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" class="btn-qty-minus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">-</button>
+              <span class="item-qty font-mono text-sm font-bold w-4 text-center">0</span>
+              <button type="button" class="btn-qty-plus w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 font-bold hover:bg-eco-500 hover:text-slate-950 transition-colors">+</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Painel de Resumo & Disparo de WhatsApp -->
+        <div class="p-6 rounded-2xl bg-eco-500/10 border border-eco-500/20 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <div class="flex items-center gap-2 text-eco-400 text-xs font-mono uppercase tracking-wider mb-1">
+              <i data-lucide="leaf" class="w-4 h-4"></i>
+              <span>Impacto Positivo Estimado:</span>
+            </div>
+            <p class="text-base font-bold text-slate-900 dark:text-white" id="impactSummary">
+              Selecione os itens acima para calcular seu impacto ecológico.
+            </p>
+            <span class="text-xs text-slate-500 font-mono" id="itemsCountSummary">0 itens selecionados</span>
+          </div>
+
+          <a href="https://wa.me/5513991315054?text=Ol%C3%A1%20Chic%C3%A3o!%20Gostaria%20de%20agendar%20uma%20coleta." target="_blank" rel="noopener noreferrer" id="whatsappDynamicBtn" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-eco-500 hover:bg-eco-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2.5 shadow-eco-btn btn-press whitespace-nowrap">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Enviar Lista no WhatsApp (13) 99131-5054</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 5. POR QUE DESCARTAR CORRETAMENTE? (IMPACTO AMBIENTAL)        -->
+    <!-- ============================================================== -->
+    <section id="por-que-descartar" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200 dark:border-white/5">
+      <div class="max-w-3xl mb-16">
+        <span class="text-xs font-mono font-semibold uppercase tracking-widest text-eco-500 block mb-3">Conscientização Urgente</span>
+        <h2 class="section-title font-bold text-slate-900 dark:text-white tracking-tight">
+          Pequenas atitudes, <br class="hidden sm:inline" />
+          grandes transformações.
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-400 mt-4 leading-relaxed">
+          Cuidar hoje garante o amanhã. Preserve os manguezais, canais e praias da Baixada Santista.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- Perigo 1: Metais Pesados -->
+        <div class="bento-card p-8 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center mb-6">
+              <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+            </div>
+            <span class="font-mono text-xs font-semibold text-slate-500 mb-2 block">O RISCO INVISÍVEL</span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Contaminação por Metais Pesados</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Equipamentos jogados no lixo comum liberam Chumbo, Mercúrio e Cádmio no solo. Esses compostos tóxicos não se decompõem e contaminam a água e a fauna marinha.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-white/5 text-xs font-mono text-red-400">
+            1 bateria contamina até 50.000L de água
+          </div>
+        </div>
+
+        <!-- Perigo 2: Economia Circular -->
+        <div class="bento-card p-8 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-eco-500/10 text-eco-400 flex items-center justify-center mb-6">
+              <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+            </div>
+            <span class="font-mono text-xs font-semibold text-slate-500 mb-2 block">ECONOMIA CIRCULAR</span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Recuperação de Minerais Raros</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Ao reciclar com a Chicão Eletrônicos, materiais como cobre, alumínio, ouro industrial e polímeros nobres voltam para a indústria, reduzindo a mineração predatória.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-white/5 text-xs font-mono text-eco-400">
+            Aproveitamento sustentável de 98%
+          </div>
+        </div>
+
+        <!-- Perigo 3: Responsabilidade Social -->
+        <div class="bento-card p-8 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <span class="font-mono text-xs font-semibold text-slate-500 mb-2 block">DESTINAÇÃO RESPONSÁVEL</span>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Compromisso com o Litoral</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Descarte consciente é responsabilidade de todos nós. Garantimos que nenhum componente coletado seja destinado a lixões clandestinos ou terrenos baldios.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 dark:border-white/5 text-xs font-mono text-blue-400">
+            Atendimento ético e pontual
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 6. COMO FUNCIONA A COLETA (3 PASSOS FÁCEIS)                    -->
+    <!-- ============================================================== -->
+    <section id="como-funciona" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200 dark:border-white/5">
+      <div class="max-w-3xl mb-16">
+        <span class="text-xs font-mono font-semibold uppercase tracking-widest text-eco-500 block mb-3">Faça Sua Parte</span>
+        <h2 class="section-title font-bold text-slate-900 dark:text-white tracking-tight">
+          Como agendar o descarte <br class="hidden sm:inline" />
+          em 3 passos práticos.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Passo 1 -->
+        <div class="p-8 rounded-2xl bg-slate-100/60 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5">
+          <div class="text-4xl font-serif italic text-eco-500 mb-4">01</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Separe seus Eletrônicos</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Reúna em uma caixa os computadores, celulares velhos, cabos embolados e peças quebradas que você tem guardadas.
+          </p>
+          <span class="block mt-5 text-[11px] font-mono text-eco-500">Dica: não jogue no lixo comum!</span>
+        </div>
+
+        <!-- Passo 2 -->
+        <div class="p-8 rounded-2xl bg-slate-100/60 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5">
+          <div class="text-4xl font-serif italic text-eco-500 mb-4">02</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Chame no WhatsApp</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Envie uma foto ou descreva brevemente os aparelhos para o WhatsApp <strong>(13) 99131-5054</strong> do Chicão.
+          </p>
+          <span class="block mt-5 text-[11px] font-mono text-eco-500">Atendimento rápido e direto</span>
+        </div>
+
+        <!-- Passo 3 -->
+        <div class="p-8 rounded-2xl bg-slate-100/60 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5">
+          <div class="text-4xl font-serif italic text-eco-500 mb-4">03</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Coleta na Sua Porta</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Agendamos o melhor dia e horário para a retirada na sua residência, condomínio ou empresa em toda a Baixada Santista.
+          </p>
+          <span class="block mt-5 text-[11px] font-mono text-eco-500">Sem complicação e sem custo</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 7. ATENDIMENTO CORPORATIVO & CONDOMÍNIOS                      -->
+    <!-- ============================================================== -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="bento-card p-8 sm:p-12 bg-gradient-to-r from-eco-950/40 to-slate-950/60 border-eco-500/30 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="max-w-xl">
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-eco-500/10 text-eco-400 border border-eco-500/20 uppercase tracking-widest font-semibold inline-block mb-3">
+            Para Empresas, Condomínios & Escolas
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3">
+            Tem grande volume de lixo eletrônico?
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Realizamos mutirões ecológicos e coletas em lote para prédios residenciais, escritórios de contabilidade, agências, escolas e indústrias da Baixada Santista.
+          </p>
+        </div>
+        <a href="https://wa.me/5513991315054?text=Ol%C3%A1%20Chic%C3%A3o!%20Represento%20uma%20empresa/condom%C3%ADnio%20e%20gostaria%20de%20agendar%20uma%20coleta%20de%20eletr%C3%B4nicos%20em%20volume." target="_blank" rel="noopener noreferrer" class="px-8 py-4 rounded-full bg-eco-500 hover:bg-eco-400 text-slate-950 font-bold text-sm btn-press whitespace-nowrap shadow-eco-btn flex items-center gap-2">
+          <i data-lucide="building-2" class="w-4 h-4"></i>
+          <span>Agendar Coleta Corporativa</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 8. FAQ ANTI-DÚVIDAS                                            -->
+    <!-- ============================================================== -->
+    <section id="faq" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto border-t border-slate-200 dark:border-white/5">
+      <div class="text-center mb-16">
+        <span class="text-xs font-mono font-semibold uppercase tracking-widest text-eco-500 block mb-3">Dúvidas Comuns</span>
+        <h2 class="section-title font-bold text-slate-900 dark:text-white tracking-tight">
+          Perguntas Frequentes
+        </h2>
+      </div>
+
+      <div class="space-y-4" id="faqAccordion">
+
+        <!-- Dúvida 1 -->
+        <div class="faq-item rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-100/50 dark:bg-white/[0.02] overflow-hidden transition-colors">
+          <button type="button" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500" aria-expanded="false">
+            <span class="text-base font-semibold text-slate-900 dark:text-white">A coleta do lixo eletrônico tem algum custo para mim?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-slate-400 transition-transform duration-200"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-white/5 pt-4">
+            <strong>Não.</strong> A coleta de lotes de equipamentos eletrônicos é 100% gratuita dentro da nossa área de atendimento regular na Baixada Santista.
+          </div>
+        </div>
+
+        <!-- Dúvida 2 -->
+        <div class="faq-item rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-100/50 dark:bg-white/[0.02] overflow-hidden transition-colors">
+          <button type="button" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500" aria-expanded="false">
+            <span class="text-base font-semibold text-slate-900 dark:text-white">Vocês aceitam aparelhos quebrados, queimados ou muito velhos?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-slate-400 transition-transform duration-200"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-white/5 pt-4">
+            <strong>Sim, com certeza!</strong> O objetivo da reciclagem é justamente recuperar os materiais e evitar o descarte no meio ambiente. Aceitamos em qualquer estado de conservação: telas quebradas, gabinetes oxidados, peças soltas, etc.
+          </div>
+        </div>
+
+        <!-- Dúvida 3 -->
+        <div class="faq-item rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-100/50 dark:bg-white/[0.02] overflow-hidden transition-colors">
+          <button type="button" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500" aria-expanded="false">
+            <span class="text-base font-semibold text-slate-900 dark:text-white">Quais cidades da Baixada Santista são atendidas?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-slate-400 transition-transform duration-200"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-white/5 pt-4">
+            Atendemos <strong>Santos, São Vicente, Praia Grande, Cubatão, Guarujá</strong> e municípios vizinhos do DDD 13.
+          </div>
+        </div>
+
+        <!-- Dúvida 4 -->
+        <div class="faq-item rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-100/50 dark:bg-white/[0.02] overflow-hidden transition-colors">
+          <button type="button" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500" aria-expanded="false">
+            <span class="text-base font-semibold text-slate-900 dark:text-white">O que acontece com os dados nos computadores e celulares?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-slate-400 transition-transform duration-200"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-white/5 pt-4">
+            Todos os discos rígidos (HDs), memórias e dispositivos de armazenamento passam por descaracterização e destruição física completa dos circuitos antes da reciclagem dos metais, garantindo sua total privacidade.
+          </div>
+        </div>
+
+        <!-- Dúvida 5 -->
+        <div class="faq-item rounded-2xl border border-slate-200 dark:border-white/5 bg-slate-100/50 dark:bg-white/[0.02] overflow-hidden transition-colors">
+          <button type="button" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-eco-500" aria-expanded="false">
+            <span class="text-base font-semibold text-slate-900 dark:text-white">Vocês recolhem lâmpadas fluorescentes ou lixo comum?</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-slate-400 transition-transform duration-200"></i>
+          </button>
+          <div class="faq-content hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-white/5 pt-4">
+            <strong>Não.</strong> Nosso foco exclusivo é o lixo eletroeletrônico. Lâmpadas de vapor de mercúrio e lixo comum devem ser entregues aos pontos específicos de coleta da prefeitura para segurança operacional.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 9. CTA FINAL DE CONTATO DIRETO NO WHATSAPP                    -->
+    <!-- ============================================================== -->
+    <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center border-t border-slate-200 dark:border-white/5">
+      <div class="w-16 h-16 rounded-full bg-eco-500/10 text-eco-400 flex items-center justify-center mx-auto mb-6">
+        <i data-lucide="recycle" class="w-8 h-8"></i>
+      </div>
+      <h2 class="section-title font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+        Ligue para Chicão Eletrônicos
+      </h2>
+      <p class="text-base text-slate-600 dark:text-slate-300 max-w-lg mx-auto mb-8">
+        Faça sua parte hoje mesmo. Separe seus aparelhos sem uso e mande uma mensagem agora mesmo no WhatsApp.
+      </p>
+
+      <div class="inline-flex flex-col sm:flex-row items-center gap-4">
+        <a href="https://wa.me/5513991315054?text=Ol%C3%A1%20Chic%C3%A3o%20Eletr%C3%B4nicos!%20Quero%20agendar%20uma%20coleta." target="_blank" rel="noopener noreferrer" class="px-9 py-4 rounded-full bg-eco-500 hover:bg-eco-400 text-slate-950 font-extrabold text-base flex items-center gap-3 shadow-eco-btn btn-press">
+          <i data-lucide="phone-call" class="w-5 h-5"></i>
+          <span>(13) 99131-5054</span>
+        </a>
+      </div>
+      <p class="text-xs font-mono text-slate-500 mt-4">
+        Descarte consciente é responsabilidade de todos.
+      </p>
+    </section>
+  </main>
+
+  <!-- ============================================================== -->
+  <!-- 10. FOOTER INSTITUCIONAL & ECOLÓGICO                           -->
+  <!-- ============================================================== -->
+  <footer class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200 dark:border-white/10 text-slate-500 text-xs font-mono">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 rounded-full bg-eco-500 flex items-center justify-center text-slate-950 font-bold text-[10px]">
+          CE
+        </div>
+        <span>Chicão Eletrônicos • &copy; 2026. Preservando a Baixada Santista.</span>
+      </div>
+
+      <div class="flex items-center gap-4 text-slate-400">
+        <span>Santos • São Vicente • Praia Grande • Cubatão • Guarujá</span>
+      </div>
+
+      <div class="text-[11px] text-eco-500 font-semibold">
+        🌱 Descarte Correto, Futuro Melhor!
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================== -->
+  <!-- BOTÃO FLUTUANTE PERSISTENTE DE WHATSAPP                        -->
+  <!-- ============================================================== -->
+  <aside aria-label="Acesso rápido ao WhatsApp" class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+    <a href="https://wa.me/5513991315054?text=Ol%C3%A1%20Chic%C3%A3o!%20Gostaria%20de%20informações%20sobre%20coleta%20de%20eletr%C3%B4nicos." target="_blank" rel="noopener noreferrer" class="relative group flex items-center gap-2.5 px-4 py-3 rounded-full bg-eco-500 hover:bg-eco-400 text-slate-950 font-bold text-xs shadow-2xl shadow-eco-500/40 btn-press focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-950 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-950"></span>
+      </span>
+      <i data-lucide="message-circle" class="w-4 h-4"></i>
+      <span class="hidden sm:inline">Chamar Chicão</span>
+    </a>
+  </aside>
+
+  <!-- ============================================================== -->
+  <!-- TOAST NOTIFICATION CONTAINER (Sonner-like)                     -->
+  <!-- ============================================================== -->
+  <div id="toastContainer" class="fixed bottom-20 right-6 z-50 flex flex-col gap-2 pointer-events-none" aria-live="polite"></div>
+
+  <!-- ============================================================== -->
+  <!-- SCRIPTS MODULARES: BENTO SPOTLIGHT & SELETOR DE DESCARTE       -->
+  <!-- ============================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      initTheme();
+      initBentoSpotlight();
+      initScrollReveal();
+      initItemsSelector();
+      initFaqAccordion();
+      initCopyPhone();
+      initMobileMenu();
+    });
+
+    // 1. Controle de Tema Dark / Light
+    function initTheme() {
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const htmlEl = document.documentElement;
+
+      const savedTheme = localStorage.getItem('eco_theme');
+      if (savedTheme) {
+        if (savedTheme === 'light') {
+          htmlEl.classList.remove('dark');
+          htmlEl.classList.add('light');
+        } else {
+          htmlEl.classList.remove('light');
+          htmlEl.classList.add('dark');
+        }
+      } else {
+        htmlEl.classList.add('dark');
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        if (htmlEl.classList.contains('dark')) {
+          htmlEl.classList.remove('dark');
+          htmlEl.classList.add('light');
+          localStorage.setItem('eco_theme', 'light');
+          showToast('Modo Claro ativado', 'info');
+        } else {
+          htmlEl.classList.remove('light');
+          htmlEl.classList.add('dark');
+          localStorage.setItem('eco_theme', 'dark');
+          showToast('Modo Escuro ativado', 'info');
+        }
+        lucide.createIcons();
+      });
+    }
+
+    // 2. Bento Spotlight Effect
+    function initBentoSpotlight() {
+      const cards = document.querySelectorAll('.bento-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+    }
+
+    // 3. Scroll Reveal via IntersectionObserver
+    function initScrollReveal() {
+      const elements = document.querySelectorAll('.reveal-on-scroll');
+      if (!('IntersectionObserver' in window)) {
+        elements.forEach(el => el.classList.add('revealed'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      elements.forEach(el => observer.observe(el));
+    }
+
+    // 4. Seletor Dinâmico de Descarte com Geração Automática para o WhatsApp
+    const selectedItems = {};
+
+    function initItemsSelector() {
+      const itemCards = document.querySelectorAll('.item-card');
+      const impactSummary = document.getElementById('impactSummary');
+      const itemsCountSummary = document.getElementById('itemsCountSummary');
+      const whatsappBtn = document.getElementById('whatsappDynamicBtn');
+
+      itemCards.forEach(card => {
+        const id = card.getAttribute('data-id');
+        const name = card.getAttribute('data-name');
+        const qtyEl = card.querySelector('.item-qty');
+        const plusBtn = card.querySelector('.btn-qty-plus');
+        const minusBtn = card.querySelector('.btn-qty-minus');
+
+        selectedItems[id] = { name: name, count: 0 };
+
+        plusBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectedItems[id].count++;
+          qtyEl.textContent = selectedItems[id].count;
+          updateCalculations();
+        });
+
+        minusBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (selectedItems[id].count > 0) {
+            selectedItems[id].count--;
+            qtyEl.textContent = selectedItems[id].count;
+            updateCalculations();
+          }
+        });
+
+        card.addEventListener('click', () => {
+          selectedItems[id].count++;
+          qtyEl.textContent = selectedItems[id].count;
+          updateCalculations();
+        });
+      });
+
+      function updateCalculations() {
+        let totalItems = 0;
+        let listText = [];
+
+        for (const key in selectedItems) {
+          const item = selectedItems[key];
+          if (item.count > 0) {
+            totalItems += item.count;
+            listText.push(`${item.count}x ${item.name}`);
+          }
+        }
+
+        if (totalItems === 0) {
+          impactSummary.textContent = 'Selecione os itens acima para calcular seu impacto ecológico.';
+          itemsCountSummary.textContent = '0 itens selecionados';
+          whatsappBtn.href = 'https://wa.me/5513991315054?text=' + encodeURIComponent('Olá Chicão Eletrônicos! Gostaria de agendar uma coleta de lixo eletrônico.');
+        } else {
+          const waterSaved = totalItems * 5000;
+          impactSummary.innerHTML = `Você está evitando a contaminação de <span class="text-eco-400 font-mono font-bold">+${waterSaved.toLocaleString('pt-BR')}L</span> de lençol freático e praias!`;
+          itemsCountSummary.textContent = `${totalItems} ${totalItems === 1 ? 'item selecionado' : 'itens selecionados'}`;
+
+          const msg = `Olá Chicão Eletrônicos! Gostaria de agendar o descarte ecológico dos seguintes itens:\n- ${listText.join('\n- ')}\n\nComo podemos combinar a coleta na Baixada Santista?`;
+          whatsappBtn.href = 'https://wa.me/5513991315054?text=' + encodeURIComponent(msg);
+        }
+      }
+    }
+
+    // 5. FAQ Accordion
+    function initFaqAccordion() {
+      const toggles = document.querySelectorAll('.faq-toggle');
+      toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+          const content = toggle.nextElementSibling;
+          const chevron = toggle.querySelector('.faq-chevron');
+
+          toggles.forEach(otherToggle => {
+            if (otherToggle !== toggle) {
+              otherToggle.setAttribute('aria-expanded', 'false');
+              otherToggle.nextElementSibling.classList.add('hidden');
+              const otherChevron = otherToggle.querySelector('.faq-chevron');
+              if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
+            }
+          });
+
+          if (isExpanded) {
+            toggle.setAttribute('aria-expanded', 'false');
+            content.classList.add('hidden');
+            if (chevron) chevron.style.transform = 'rotate(0deg)';
+          } else {
+            toggle.setAttribute('aria-expanded', 'true');
+            content.classList.remove('hidden');
+            if (chevron) chevron.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+    }
+
+    // 6. Copiar Telefone
+    function initCopyPhone() {
+      const copyBtn = document.getElementById('copyPhoneBtn');
+      const phone = '(13) 99131-5054';
+
+      if (!copyBtn) return;
+
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText('13991315054').then(() => {
+          showToast('Telefone do Chicão copiado: ' + phone, 'success');
+        }).catch(() => {
+          showToast('Ligue para: ' + phone, 'info');
+        });
+      });
+    }
+
+    // 7. Mobile Menu
+    function initMobileMenu() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      const links = document.querySelectorAll('.mobile-nav-link');
+
+      if (!btn || !menu) return;
+
+      btn.addEventListener('click', () => {
+        const isHidden = menu.classList.contains('hidden');
+        if (isHidden) {
+          menu.classList.remove('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+        } else {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Notificações Toast estilo Sonner
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/95 dark:bg-[#0E1410]/95 backdrop-blur-md border border-eco-500/20 shadow-2xl text-white text-xs font-mono transition-all duration-300 transform translate-y-3 opacity-0';
+
+      let icon = '<i data-lucide="info" class="w-4 h-4 text-eco-400"></i>';
+      if (type === 'success') {
+        icon = '<i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>';
+      }
+
+      toast.innerHTML = `
+        ${icon}
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+      lucide.createIcons();
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-3', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
