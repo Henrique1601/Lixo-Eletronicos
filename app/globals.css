@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+  --color-eco-50: #ecfdf5;
+  --color-eco-100: #d1fae5;
+  --color-eco-400: #34d399;
+  --color-eco-500: #10b981;
+  --color-eco-600: #059669;
+  --color-eco-700: #047857;
+
+  --color-surface-dark: #070A08;
+  --color-surface-dark-card: #0E1410;
+  --color-surface-light: #F6F9F6;
+  --color-surface-light-card: #FFFFFF;
+
+  --font-sans: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  --shadow-eco-glow: 0 0 50px -10px rgba(16, 185, 129, 0.25);
+  --shadow-eco-btn: 0 10px 25px -5px rgba(16, 185, 129, 0.35);
+  --shadow-card-dark: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  --shadow-card-light: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+:root {
+  --bg-color: #070A08;
+  --card-bg: #0E1410;
+  --border-color: rgba(16, 185, 129, 0.12);
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+}
+
+.light, [data-theme="light"] {
+  --bg-color: #F6F9F6;
+  --card-bg: #FFFFFF;
+  --border-color: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Tipografia Fluida via clamp() */
+.hero-title {
+  font-size: clamp(2.2rem, 5vw + 1rem, 4.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3.2vw + 0.5rem, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+/* Ambient Spotlight Background com nuance verde esmeralda */
+.ambient-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1300px;
+  height: 650px;
+  background: radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.14) 0%, rgba(16, 185, 129, 0.03) 50%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Bento Card Spotlight Hover Effect */
+.bento-card {
+  position: relative;
+  border-radius: 1.5rem;
+  transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(600px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), rgba(16, 185, 129, 0.08), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+}
+
+.bento-card:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Micro-interação em botões */
+.btn-press {
+  transition: transform 140ms ease-out, background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Custom Scrollbar minimalista */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-press:active {
+    transform: none !important;
+  }
+}
